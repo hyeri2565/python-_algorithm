@@ -1,21 +1,22 @@
-# change_name2
 
-import os
-
-file_list=os.listdir(r"C:\새 폴더\kepco")
-print(file_list)
-
-
-file_list2=os.listdir("E:\광명지사 사진데이터\전체사진")
-
-file_list3=os.listdir("E:\광명지사 사진데이터\전체사진"+"\\"+"과림간")
-
-file_list4=os.listdir("E:\광명지사 사진데이터\전체사진"+"\\"+"과림간"+"\\"+"과림간10_9321Y311")
-print(file_list4)
-'''
-for i in file_list4:
-    os.rename("E:\광명지사 사진데이터\전체사진"+"\\"+"과림간"+
-              "\\"+"과림간10_9321Y311"+"\\"+i,
-              "E:\광명지사 사진데이터\전체사진"+"\\"+"과림간"+
-              "\\"+"과림간10_9321Y311"+"\\"+i[:-5]+str(0)+i[-5]+'.jpg')
-'''    
+file3_list=[]
+file_list=os.listdir("E:\광명지사 사진데이터\전체사진")
+for file in file_list:
+    print(file)
+    entries=os.listdir("E:\광명지사 사진데이터\전체사진"+"\\"+file)  #total folder
+    for file2 in entries:
+        try:
+            entries2=os.listdir("E:\광명지사 사진데이터\전체사진"+"\\"+file+"\\"+file2)   #total folder2
+        except:
+            continue
+        else:
+            
+            for file3 in entries2:
+                a=file3.rfind('_')
+                b=file3.rfind('.')
+                if file3[a+1:b][0]=='0':
+                    continue
+                else:
+                    os.rename("E:\광명지사 사진데이터\전체사진"+"\\"+file+"\\"+file2+"\\"+file3,
+                              "E:\광명지사 사진데이터\전체사진"+"\\"+file+"\\"+file2+"\\"+file3[:a+1]+str(0)+file3[a+1:b]+".jpg")
+               
